@@ -1,0 +1,39 @@
+[tool.poetry]
+name = "csa-lab3"
+version = "0.1.0"
+description = "Computer systems architecture project"
+authors = ["Taranov Kirill <kirillto20051106@mail.ru>"]
+license = "BSD"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+
+[tool.poetry.group.dev.dependencies]
+coverage = "^7.2.7"
+mypy = "^1.4.1"
+pytest = "^8.2.2"
+pytest-golden = "^0.2.2"
+ruff = "^0.1.3"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.pytest.ini_options]
+enable_assertion_pass_hook = true
+addopts = "--doctest-modules"
+log_format = "%(levelname)s :  %(module)s :  %(message)s"
+
+[tool.ruff]
+line-length = 120
+lint.select = [
+    "F", "E", "W", "N", "I", "C90", "UP", "ERA", "YTT", "ASYNC", "A", "COM", "FA", "ICN", "INP", "T20", "PT", "Q", "RET", "PTH", "PD", "TRY", "RUF"
+]
+lint.ignore = [
+    "COM812", "E501", "T201", "RUF002", "RUF003", "PTH123", "PTH118", "UP032"
+]
+lint.unfixable = ["ERA001"]
+src = ["src"]
+
+

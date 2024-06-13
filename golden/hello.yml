@@ -1,0 +1,234 @@
+in_source: |-
+  .data
+  hello_len: 13
+  hello: "Hello, World!"
+  current_pos: 0
+
+  .code
+      LDA &hello        
+      STA current_pos  
+  print:
+      LDA (current_pos)
+      OUT              
+      LDA current_pos
+      INC               
+      STA current_pos 
+      LDA hello_len
+      DEC
+      STA hello_len              
+      JZ end           
+      JMP print     
+  end:
+      HLT           
+
+in_stdin: |
+out_code: |-
+  {
+      "data": [
+          13,
+          72,
+          101,
+          108,
+          108,
+          111,
+          44,
+          32,
+          87,
+          111,
+          114,
+          108,
+          100,
+          33,
+          0
+      ],
+      "code": [
+          {
+              "opcode": "LDA",
+              "arg": "&1"
+          },
+          {
+              "opcode": "STA",
+              "arg": 14
+          },
+          {
+              "opcode": "LDA",
+              "arg": "(14)"
+          },
+          {
+              "opcode": "OUT",
+              "arg": null
+          },
+          {
+              "opcode": "LDA",
+              "arg": 14
+          },
+          {
+              "opcode": "INC",
+              "arg": null
+          },
+          {
+              "opcode": "STA",
+              "arg": 14
+          },
+          {
+              "opcode": "LDA",
+              "arg": 0
+          },
+          {
+              "opcode": "DEC",
+              "arg": null
+          },
+          {
+              "opcode": "STA",
+              "arg": 0
+          },
+          {
+              "opcode": "JZ",
+              "arg": 12
+          },
+          {
+              "opcode": "JMP",
+              "arg": 2
+          },
+          {
+              "opcode": "HLT",
+              "arg": null
+          }
+      ]
+  }
+out_stdout: |
+  ============================================================
+  Output: Hello, World!
+out_log: |
+  DEBUG | TICK: 0     INSTR_COUNT: 0     PC: 0    INSTR: LDA  &1   AR: 0    DR: 0    ACC: 0    Z-Flag: 1    
+  DEBUG | TICK: 5     INSTR_COUNT: 1     PC: 1    INSTR: STA  14   AR: 1    DR: 72   ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 9     INSTR_COUNT: 2     PC: 2    INSTR: LDA  (14) AR: 14   DR: 1    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 15    INSTR_COUNT: 3     PC: 3    INSTR: OUT       AR: 1    DR: 72   ACC: 72   Z-Flag: 0    
+  DEBUG | TICK: 18    INSTR_COUNT: 4     PC: 4    INSTR: LDA  14   AR: 1    DR: 72   ACC: 72   Z-Flag: 0    
+  DEBUG | TICK: 23    INSTR_COUNT: 5     PC: 5    INSTR: INC       AR: 14   DR: 1    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 26    INSTR_COUNT: 6     PC: 6    INSTR: STA  14   AR: 14   DR: 1    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 30    INSTR_COUNT: 7     PC: 7    INSTR: LDA  0    AR: 14   DR: 2    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 35    INSTR_COUNT: 8     PC: 8    INSTR: DEC       AR: 0    DR: 13   ACC: 13   Z-Flag: 0    
+  DEBUG | TICK: 38    INSTR_COUNT: 9     PC: 9    INSTR: STA  0    AR: 0    DR: 13   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 42    INSTR_COUNT: 10    PC: 10   INSTR: JZ   12   AR: 0    DR: 12   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 45    INSTR_COUNT: 11    PC: 11   INSTR: JMP  2    AR: 0    DR: 12   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 48    INSTR_COUNT: 12    PC: 2    INSTR: LDA  (14) AR: 0    DR: 12   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 54    INSTR_COUNT: 13    PC: 3    INSTR: OUT       AR: 2    DR: 101  ACC: 101  Z-Flag: 0    
+  DEBUG | TICK: 57    INSTR_COUNT: 14    PC: 4    INSTR: LDA  14   AR: 2    DR: 101  ACC: 101  Z-Flag: 0    
+  DEBUG | TICK: 62    INSTR_COUNT: 15    PC: 5    INSTR: INC       AR: 14   DR: 2    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 65    INSTR_COUNT: 16    PC: 6    INSTR: STA  14   AR: 14   DR: 2    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 69    INSTR_COUNT: 17    PC: 7    INSTR: LDA  0    AR: 14   DR: 3    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 74    INSTR_COUNT: 18    PC: 8    INSTR: DEC       AR: 0    DR: 12   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 77    INSTR_COUNT: 19    PC: 9    INSTR: STA  0    AR: 0    DR: 12   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 81    INSTR_COUNT: 20    PC: 10   INSTR: JZ   12   AR: 0    DR: 11   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 84    INSTR_COUNT: 21    PC: 11   INSTR: JMP  2    AR: 0    DR: 11   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 87    INSTR_COUNT: 22    PC: 2    INSTR: LDA  (14) AR: 0    DR: 11   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 93    INSTR_COUNT: 23    PC: 3    INSTR: OUT       AR: 3    DR: 108  ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 96    INSTR_COUNT: 24    PC: 4    INSTR: LDA  14   AR: 3    DR: 108  ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 101   INSTR_COUNT: 25    PC: 5    INSTR: INC       AR: 14   DR: 3    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 104   INSTR_COUNT: 26    PC: 6    INSTR: STA  14   AR: 14   DR: 3    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 108   INSTR_COUNT: 27    PC: 7    INSTR: LDA  0    AR: 14   DR: 4    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 113   INSTR_COUNT: 28    PC: 8    INSTR: DEC       AR: 0    DR: 11   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 116   INSTR_COUNT: 29    PC: 9    INSTR: STA  0    AR: 0    DR: 11   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 120   INSTR_COUNT: 30    PC: 10   INSTR: JZ   12   AR: 0    DR: 10   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 123   INSTR_COUNT: 31    PC: 11   INSTR: JMP  2    AR: 0    DR: 10   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 126   INSTR_COUNT: 32    PC: 2    INSTR: LDA  (14) AR: 0    DR: 10   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 132   INSTR_COUNT: 33    PC: 3    INSTR: OUT       AR: 4    DR: 108  ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 135   INSTR_COUNT: 34    PC: 4    INSTR: LDA  14   AR: 4    DR: 108  ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 140   INSTR_COUNT: 35    PC: 5    INSTR: INC       AR: 14   DR: 4    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 143   INSTR_COUNT: 36    PC: 6    INSTR: STA  14   AR: 14   DR: 4    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 147   INSTR_COUNT: 37    PC: 7    INSTR: LDA  0    AR: 14   DR: 5    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 152   INSTR_COUNT: 38    PC: 8    INSTR: DEC       AR: 0    DR: 10   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 155   INSTR_COUNT: 39    PC: 9    INSTR: STA  0    AR: 0    DR: 10   ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 159   INSTR_COUNT: 40    PC: 10   INSTR: JZ   12   AR: 0    DR: 9    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 162   INSTR_COUNT: 41    PC: 11   INSTR: JMP  2    AR: 0    DR: 9    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 165   INSTR_COUNT: 42    PC: 2    INSTR: LDA  (14) AR: 0    DR: 9    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 171   INSTR_COUNT: 43    PC: 3    INSTR: OUT       AR: 5    DR: 111  ACC: 111  Z-Flag: 0    
+  DEBUG | TICK: 174   INSTR_COUNT: 44    PC: 4    INSTR: LDA  14   AR: 5    DR: 111  ACC: 111  Z-Flag: 0    
+  DEBUG | TICK: 179   INSTR_COUNT: 45    PC: 5    INSTR: INC       AR: 14   DR: 5    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 182   INSTR_COUNT: 46    PC: 6    INSTR: STA  14   AR: 14   DR: 5    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 186   INSTR_COUNT: 47    PC: 7    INSTR: LDA  0    AR: 14   DR: 6    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 191   INSTR_COUNT: 48    PC: 8    INSTR: DEC       AR: 0    DR: 9    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 194   INSTR_COUNT: 49    PC: 9    INSTR: STA  0    AR: 0    DR: 9    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 198   INSTR_COUNT: 50    PC: 10   INSTR: JZ   12   AR: 0    DR: 8    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 201   INSTR_COUNT: 51    PC: 11   INSTR: JMP  2    AR: 0    DR: 8    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 204   INSTR_COUNT: 52    PC: 2    INSTR: LDA  (14) AR: 0    DR: 8    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 210   INSTR_COUNT: 53    PC: 3    INSTR: OUT       AR: 6    DR: 44   ACC: 44   Z-Flag: 0    
+  DEBUG | TICK: 213   INSTR_COUNT: 54    PC: 4    INSTR: LDA  14   AR: 6    DR: 44   ACC: 44   Z-Flag: 0    
+  DEBUG | TICK: 218   INSTR_COUNT: 55    PC: 5    INSTR: INC       AR: 14   DR: 6    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 221   INSTR_COUNT: 56    PC: 6    INSTR: STA  14   AR: 14   DR: 6    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 225   INSTR_COUNT: 57    PC: 7    INSTR: LDA  0    AR: 14   DR: 7    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 230   INSTR_COUNT: 58    PC: 8    INSTR: DEC       AR: 0    DR: 8    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 233   INSTR_COUNT: 59    PC: 9    INSTR: STA  0    AR: 0    DR: 8    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 237   INSTR_COUNT: 60    PC: 10   INSTR: JZ   12   AR: 0    DR: 7    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 240   INSTR_COUNT: 61    PC: 11   INSTR: JMP  2    AR: 0    DR: 7    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 243   INSTR_COUNT: 62    PC: 2    INSTR: LDA  (14) AR: 0    DR: 7    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 249   INSTR_COUNT: 63    PC: 3    INSTR: OUT       AR: 7    DR: 32   ACC: 32   Z-Flag: 0    
+  DEBUG | TICK: 252   INSTR_COUNT: 64    PC: 4    INSTR: LDA  14   AR: 7    DR: 32   ACC: 32   Z-Flag: 0    
+  DEBUG | TICK: 257   INSTR_COUNT: 65    PC: 5    INSTR: INC       AR: 14   DR: 7    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 260   INSTR_COUNT: 66    PC: 6    INSTR: STA  14   AR: 14   DR: 7    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 264   INSTR_COUNT: 67    PC: 7    INSTR: LDA  0    AR: 14   DR: 8    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 269   INSTR_COUNT: 68    PC: 8    INSTR: DEC       AR: 0    DR: 7    ACC: 7    Z-Flag: 0    
+  DEBUG | TICK: 272   INSTR_COUNT: 69    PC: 9    INSTR: STA  0    AR: 0    DR: 7    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 276   INSTR_COUNT: 70    PC: 10   INSTR: JZ   12   AR: 0    DR: 6    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 279   INSTR_COUNT: 71    PC: 11   INSTR: JMP  2    AR: 0    DR: 6    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 282   INSTR_COUNT: 72    PC: 2    INSTR: LDA  (14) AR: 0    DR: 6    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 288   INSTR_COUNT: 73    PC: 3    INSTR: OUT       AR: 8    DR: 87   ACC: 87   Z-Flag: 0    
+  DEBUG | TICK: 291   INSTR_COUNT: 74    PC: 4    INSTR: LDA  14   AR: 8    DR: 87   ACC: 87   Z-Flag: 0    
+  DEBUG | TICK: 296   INSTR_COUNT: 75    PC: 5    INSTR: INC       AR: 14   DR: 8    ACC: 8    Z-Flag: 0    
+  DEBUG | TICK: 299   INSTR_COUNT: 76    PC: 6    INSTR: STA  14   AR: 14   DR: 8    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 303   INSTR_COUNT: 77    PC: 7    INSTR: LDA  0    AR: 14   DR: 9    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 308   INSTR_COUNT: 78    PC: 8    INSTR: DEC       AR: 0    DR: 6    ACC: 6    Z-Flag: 0    
+  DEBUG | TICK: 311   INSTR_COUNT: 79    PC: 9    INSTR: STA  0    AR: 0    DR: 6    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 315   INSTR_COUNT: 80    PC: 10   INSTR: JZ   12   AR: 0    DR: 5    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 318   INSTR_COUNT: 81    PC: 11   INSTR: JMP  2    AR: 0    DR: 5    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 321   INSTR_COUNT: 82    PC: 2    INSTR: LDA  (14) AR: 0    DR: 5    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 327   INSTR_COUNT: 83    PC: 3    INSTR: OUT       AR: 9    DR: 111  ACC: 111  Z-Flag: 0    
+  DEBUG | TICK: 330   INSTR_COUNT: 84    PC: 4    INSTR: LDA  14   AR: 9    DR: 111  ACC: 111  Z-Flag: 0    
+  DEBUG | TICK: 335   INSTR_COUNT: 85    PC: 5    INSTR: INC       AR: 14   DR: 9    ACC: 9    Z-Flag: 0    
+  DEBUG | TICK: 338   INSTR_COUNT: 86    PC: 6    INSTR: STA  14   AR: 14   DR: 9    ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 342   INSTR_COUNT: 87    PC: 7    INSTR: LDA  0    AR: 14   DR: 10   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 347   INSTR_COUNT: 88    PC: 8    INSTR: DEC       AR: 0    DR: 5    ACC: 5    Z-Flag: 0    
+  DEBUG | TICK: 350   INSTR_COUNT: 89    PC: 9    INSTR: STA  0    AR: 0    DR: 5    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 354   INSTR_COUNT: 90    PC: 10   INSTR: JZ   12   AR: 0    DR: 4    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 357   INSTR_COUNT: 91    PC: 11   INSTR: JMP  2    AR: 0    DR: 4    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 360   INSTR_COUNT: 92    PC: 2    INSTR: LDA  (14) AR: 0    DR: 4    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 366   INSTR_COUNT: 93    PC: 3    INSTR: OUT       AR: 10   DR: 114  ACC: 114  Z-Flag: 0    
+  DEBUG | TICK: 369   INSTR_COUNT: 94    PC: 4    INSTR: LDA  14   AR: 10   DR: 114  ACC: 114  Z-Flag: 0    
+  DEBUG | TICK: 374   INSTR_COUNT: 95    PC: 5    INSTR: INC       AR: 14   DR: 10   ACC: 10   Z-Flag: 0    
+  DEBUG | TICK: 377   INSTR_COUNT: 96    PC: 6    INSTR: STA  14   AR: 14   DR: 10   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 381   INSTR_COUNT: 97    PC: 7    INSTR: LDA  0    AR: 14   DR: 11   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 386   INSTR_COUNT: 98    PC: 8    INSTR: DEC       AR: 0    DR: 4    ACC: 4    Z-Flag: 0    
+  DEBUG | TICK: 389   INSTR_COUNT: 99    PC: 9    INSTR: STA  0    AR: 0    DR: 4    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 393   INSTR_COUNT: 100   PC: 10   INSTR: JZ   12   AR: 0    DR: 3    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 396   INSTR_COUNT: 101   PC: 11   INSTR: JMP  2    AR: 0    DR: 3    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 399   INSTR_COUNT: 102   PC: 2    INSTR: LDA  (14) AR: 0    DR: 3    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 405   INSTR_COUNT: 103   PC: 3    INSTR: OUT       AR: 11   DR: 108  ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 408   INSTR_COUNT: 104   PC: 4    INSTR: LDA  14   AR: 11   DR: 108  ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 413   INSTR_COUNT: 105   PC: 5    INSTR: INC       AR: 14   DR: 11   ACC: 11   Z-Flag: 0    
+  DEBUG | TICK: 416   INSTR_COUNT: 106   PC: 6    INSTR: STA  14   AR: 14   DR: 11   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 420   INSTR_COUNT: 107   PC: 7    INSTR: LDA  0    AR: 14   DR: 12   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 425   INSTR_COUNT: 108   PC: 8    INSTR: DEC       AR: 0    DR: 3    ACC: 3    Z-Flag: 0    
+  DEBUG | TICK: 428   INSTR_COUNT: 109   PC: 9    INSTR: STA  0    AR: 0    DR: 3    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 432   INSTR_COUNT: 110   PC: 10   INSTR: JZ   12   AR: 0    DR: 2    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 435   INSTR_COUNT: 111   PC: 11   INSTR: JMP  2    AR: 0    DR: 2    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 438   INSTR_COUNT: 112   PC: 2    INSTR: LDA  (14) AR: 0    DR: 2    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 444   INSTR_COUNT: 113   PC: 3    INSTR: OUT       AR: 12   DR: 100  ACC: 100  Z-Flag: 0    
+  DEBUG | TICK: 447   INSTR_COUNT: 114   PC: 4    INSTR: LDA  14   AR: 12   DR: 100  ACC: 100  Z-Flag: 0    
+  DEBUG | TICK: 452   INSTR_COUNT: 115   PC: 5    INSTR: INC       AR: 14   DR: 12   ACC: 12   Z-Flag: 0    
+  DEBUG | TICK: 455   INSTR_COUNT: 116   PC: 6    INSTR: STA  14   AR: 14   DR: 12   ACC: 13   Z-Flag: 0    
+  DEBUG | TICK: 459   INSTR_COUNT: 117   PC: 7    INSTR: LDA  0    AR: 14   DR: 13   ACC: 13   Z-Flag: 0    
+  DEBUG | TICK: 464   INSTR_COUNT: 118   PC: 8    INSTR: DEC       AR: 0    DR: 2    ACC: 2    Z-Flag: 0    
+  DEBUG | TICK: 467   INSTR_COUNT: 119   PC: 9    INSTR: STA  0    AR: 0    DR: 2    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 471   INSTR_COUNT: 120   PC: 10   INSTR: JZ   12   AR: 0    DR: 1    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 474   INSTR_COUNT: 121   PC: 11   INSTR: JMP  2    AR: 0    DR: 1    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 477   INSTR_COUNT: 122   PC: 2    INSTR: LDA  (14) AR: 0    DR: 1    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 483   INSTR_COUNT: 123   PC: 3    INSTR: OUT       AR: 13   DR: 33   ACC: 33   Z-Flag: 0    
+  DEBUG | TICK: 486   INSTR_COUNT: 124   PC: 4    INSTR: LDA  14   AR: 13   DR: 33   ACC: 33   Z-Flag: 0    
+  DEBUG | TICK: 491   INSTR_COUNT: 125   PC: 5    INSTR: INC       AR: 14   DR: 13   ACC: 13   Z-Flag: 0    
+  DEBUG | TICK: 494   INSTR_COUNT: 126   PC: 6    INSTR: STA  14   AR: 14   DR: 13   ACC: 14   Z-Flag: 0    
+  DEBUG | TICK: 498   INSTR_COUNT: 127   PC: 7    INSTR: LDA  0    AR: 14   DR: 14   ACC: 14   Z-Flag: 0    
+  DEBUG | TICK: 503   INSTR_COUNT: 128   PC: 8    INSTR: DEC       AR: 0    DR: 1    ACC: 1    Z-Flag: 0    
+  DEBUG | TICK: 506   INSTR_COUNT: 129   PC: 9    INSTR: STA  0    AR: 0    DR: 1    ACC: 0    Z-Flag: 1    
+  DEBUG | TICK: 510   INSTR_COUNT: 130   PC: 10   INSTR: JZ   12   AR: 0    DR: 0    ACC: 0    Z-Flag: 1    
+  DEBUG | TICK: 513   INSTR_COUNT: 131   PC: 12   INSTR: HLT       AR: 0    DR: 0    ACC: 0    Z-Flag: 1    

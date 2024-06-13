@@ -1,0 +1,320 @@
+in_source: |-
+  .data
+  n: 999
+  sum: 0
+  three: 3
+  five: 5
+  fifteen: 15
+  temp: 0
+  two: 2
+  three_sum: 0
+  five_sum: 0
+  fifteen_sum: 0
+
+  .code
+  ; Вычисление three_sum = 3 * (n // 3) * (n // 3 + 1) // 2
+  LDA n
+  DIV three
+  STA temp
+  INC
+  MUL temp
+  STA temp
+  LDA temp
+  MUL three
+  STA temp
+  LDA temp
+  DIV two
+  STA three_sum
+
+
+
+  ; Вычисление five_sum = 5 * (n // 5) * (n // 5 + 1) // 2
+  LDA n
+  DIV five
+  STA temp
+  INC
+  MUL temp
+  STA temp
+  LDA temp
+  MUL five
+  STA temp
+  LDA temp
+  DIV two
+  STA five_sum
+
+
+  ; Вычисление fifteen_sum = 15 * (n // 15) * (n // 15 + 1) // 2
+  LDA n
+  DIV fifteen
+  STA temp
+  INC
+  MUL temp
+  STA temp
+  LDA temp
+  MUL fifteen
+  STA temp
+  LDA temp
+  DIV two
+  STA fifteen_sum
+
+
+  ; Вычисление result = three_sum + five_sum - fifteen_sum
+  LDA three_sum
+  ADD five_sum
+  STA sum
+  LDA sum
+  SUB fifteen_sum
+  STA sum
+
+  ; Вывод результата
+  LDA sum
+  OUT
+  HLT
+
+in_stdin: |
+out_code: |-
+  {
+      "data": [
+          999,
+          0,
+          3,
+          5,
+          15,
+          0,
+          2,
+          0,
+          0,
+          0
+      ],
+      "code": [
+          {
+              "opcode": "LDA",
+              "arg": 0
+          },
+          {
+              "opcode": "DIV",
+              "arg": 2
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "INC",
+              "arg": null
+          },
+          {
+              "opcode": "MUL",
+              "arg": 5
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "LDA",
+              "arg": 5
+          },
+          {
+              "opcode": "MUL",
+              "arg": 2
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "LDA",
+              "arg": 5
+          },
+          {
+              "opcode": "DIV",
+              "arg": 6
+          },
+          {
+              "opcode": "STA",
+              "arg": 7
+          },
+          {
+              "opcode": "LDA",
+              "arg": 0
+          },
+          {
+              "opcode": "DIV",
+              "arg": 3
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "INC",
+              "arg": null
+          },
+          {
+              "opcode": "MUL",
+              "arg": 5
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "LDA",
+              "arg": 5
+          },
+          {
+              "opcode": "MUL",
+              "arg": 3
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "LDA",
+              "arg": 5
+          },
+          {
+              "opcode": "DIV",
+              "arg": 6
+          },
+          {
+              "opcode": "STA",
+              "arg": 8
+          },
+          {
+              "opcode": "LDA",
+              "arg": 0
+          },
+          {
+              "opcode": "DIV",
+              "arg": 4
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "INC",
+              "arg": null
+          },
+          {
+              "opcode": "MUL",
+              "arg": 5
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "LDA",
+              "arg": 5
+          },
+          {
+              "opcode": "MUL",
+              "arg": 4
+          },
+          {
+              "opcode": "STA",
+              "arg": 5
+          },
+          {
+              "opcode": "LDA",
+              "arg": 5
+          },
+          {
+              "opcode": "DIV",
+              "arg": 6
+          },
+          {
+              "opcode": "STA",
+              "arg": 9
+          },
+          {
+              "opcode": "LDA",
+              "arg": 7
+          },
+          {
+              "opcode": "ADD",
+              "arg": 8
+          },
+          {
+              "opcode": "STA",
+              "arg": 1
+          },
+          {
+              "opcode": "LDA",
+              "arg": 1
+          },
+          {
+              "opcode": "SUB",
+              "arg": 9
+          },
+          {
+              "opcode": "STA",
+              "arg": 1
+          },
+          {
+              "opcode": "LDA",
+              "arg": 1
+          },
+          {
+              "opcode": "OUT",
+              "arg": null
+          },
+          {
+              "opcode": "HLT",
+              "arg": null
+          }
+      ]
+  }
+out_stdout: |
+  ============================================================
+  Output: 233168
+out_log: |
+  DEBUG | TICK: 0     INSTR_COUNT: 0     PC: 0    INSTR: LDA  0    AR: 0    DR: 0    ACC: 0    Z-Flag: 1    
+  DEBUG | TICK: 5     INSTR_COUNT: 1     PC: 1    INSTR: DIV  2    AR: 0    DR: 999  ACC: 999  Z-Flag: 0    
+  DEBUG | TICK: 10    INSTR_COUNT: 2     PC: 2    INSTR: STA  5    AR: 2    DR: 3    ACC: 333  Z-Flag: 0    
+  DEBUG | TICK: 14    INSTR_COUNT: 3     PC: 3    INSTR: INC       AR: 5    DR: 333  ACC: 333  Z-Flag: 0    
+  DEBUG | TICK: 17    INSTR_COUNT: 4     PC: 4    INSTR: MUL  5    AR: 5    DR: 333  ACC: 334  Z-Flag: 0    
+  DEBUG | TICK: 22    INSTR_COUNT: 5     PC: 5    INSTR: STA  5    AR: 5    DR: 333  ACC: 111222 Z-Flag: 0    
+  DEBUG | TICK: 26    INSTR_COUNT: 6     PC: 6    INSTR: LDA  5    AR: 5    DR: 111222 ACC: 111222 Z-Flag: 0    
+  DEBUG | TICK: 31    INSTR_COUNT: 7     PC: 7    INSTR: MUL  2    AR: 5    DR: 111222 ACC: 111222 Z-Flag: 0    
+  DEBUG | TICK: 36    INSTR_COUNT: 8     PC: 8    INSTR: STA  5    AR: 2    DR: 3    ACC: 333666 Z-Flag: 0    
+  DEBUG | TICK: 40    INSTR_COUNT: 9     PC: 9    INSTR: LDA  5    AR: 5    DR: 333666 ACC: 333666 Z-Flag: 0    
+  DEBUG | TICK: 45    INSTR_COUNT: 10    PC: 10   INSTR: DIV  6    AR: 5    DR: 333666 ACC: 333666 Z-Flag: 0    
+  DEBUG | TICK: 50    INSTR_COUNT: 11    PC: 11   INSTR: STA  7    AR: 6    DR: 2    ACC: 166833 Z-Flag: 0    
+  DEBUG | TICK: 54    INSTR_COUNT: 12    PC: 12   INSTR: LDA  0    AR: 7    DR: 166833 ACC: 166833 Z-Flag: 0    
+  DEBUG | TICK: 59    INSTR_COUNT: 13    PC: 13   INSTR: DIV  3    AR: 0    DR: 999  ACC: 999  Z-Flag: 0    
+  DEBUG | TICK: 64    INSTR_COUNT: 14    PC: 14   INSTR: STA  5    AR: 3    DR: 5    ACC: 199  Z-Flag: 0    
+  DEBUG | TICK: 68    INSTR_COUNT: 15    PC: 15   INSTR: INC       AR: 5    DR: 199  ACC: 199  Z-Flag: 0    
+  DEBUG | TICK: 71    INSTR_COUNT: 16    PC: 16   INSTR: MUL  5    AR: 5    DR: 199  ACC: 200  Z-Flag: 0    
+  DEBUG | TICK: 76    INSTR_COUNT: 17    PC: 17   INSTR: STA  5    AR: 5    DR: 199  ACC: 39800 Z-Flag: 0    
+  DEBUG | TICK: 80    INSTR_COUNT: 18    PC: 18   INSTR: LDA  5    AR: 5    DR: 39800 ACC: 39800 Z-Flag: 0    
+  DEBUG | TICK: 85    INSTR_COUNT: 19    PC: 19   INSTR: MUL  3    AR: 5    DR: 39800 ACC: 39800 Z-Flag: 0    
+  DEBUG | TICK: 90    INSTR_COUNT: 20    PC: 20   INSTR: STA  5    AR: 3    DR: 5    ACC: 199000 Z-Flag: 0    
+  DEBUG | TICK: 94    INSTR_COUNT: 21    PC: 21   INSTR: LDA  5    AR: 5    DR: 199000 ACC: 199000 Z-Flag: 0    
+  DEBUG | TICK: 99    INSTR_COUNT: 22    PC: 22   INSTR: DIV  6    AR: 5    DR: 199000 ACC: 199000 Z-Flag: 0    
+  DEBUG | TICK: 104   INSTR_COUNT: 23    PC: 23   INSTR: STA  8    AR: 6    DR: 2    ACC: 99500 Z-Flag: 0    
+  DEBUG | TICK: 108   INSTR_COUNT: 24    PC: 24   INSTR: LDA  0    AR: 8    DR: 99500 ACC: 99500 Z-Flag: 0    
+  DEBUG | TICK: 113   INSTR_COUNT: 25    PC: 25   INSTR: DIV  4    AR: 0    DR: 999  ACC: 999  Z-Flag: 0    
+  DEBUG | TICK: 118   INSTR_COUNT: 26    PC: 26   INSTR: STA  5    AR: 4    DR: 15   ACC: 66   Z-Flag: 0    
+  DEBUG | TICK: 122   INSTR_COUNT: 27    PC: 27   INSTR: INC       AR: 5    DR: 66   ACC: 66   Z-Flag: 0    
+  DEBUG | TICK: 125   INSTR_COUNT: 28    PC: 28   INSTR: MUL  5    AR: 5    DR: 66   ACC: 67   Z-Flag: 0    
+  DEBUG | TICK: 130   INSTR_COUNT: 29    PC: 29   INSTR: STA  5    AR: 5    DR: 66   ACC: 4422 Z-Flag: 0    
+  DEBUG | TICK: 134   INSTR_COUNT: 30    PC: 30   INSTR: LDA  5    AR: 5    DR: 4422 ACC: 4422 Z-Flag: 0    
+  DEBUG | TICK: 139   INSTR_COUNT: 31    PC: 31   INSTR: MUL  4    AR: 5    DR: 4422 ACC: 4422 Z-Flag: 0    
+  DEBUG | TICK: 144   INSTR_COUNT: 32    PC: 32   INSTR: STA  5    AR: 4    DR: 15   ACC: 66330 Z-Flag: 0    
+  DEBUG | TICK: 148   INSTR_COUNT: 33    PC: 33   INSTR: LDA  5    AR: 5    DR: 66330 ACC: 66330 Z-Flag: 0    
+  DEBUG | TICK: 153   INSTR_COUNT: 34    PC: 34   INSTR: DIV  6    AR: 5    DR: 66330 ACC: 66330 Z-Flag: 0    
+  DEBUG | TICK: 158   INSTR_COUNT: 35    PC: 35   INSTR: STA  9    AR: 6    DR: 2    ACC: 33165 Z-Flag: 0    
+  DEBUG | TICK: 162   INSTR_COUNT: 36    PC: 36   INSTR: LDA  7    AR: 9    DR: 33165 ACC: 33165 Z-Flag: 0    
+  DEBUG | TICK: 167   INSTR_COUNT: 37    PC: 37   INSTR: ADD  8    AR: 7    DR: 166833 ACC: 166833 Z-Flag: 0    
+  DEBUG | TICK: 172   INSTR_COUNT: 38    PC: 38   INSTR: STA  1    AR: 8    DR: 99500 ACC: 266333 Z-Flag: 0    
+  DEBUG | TICK: 176   INSTR_COUNT: 39    PC: 39   INSTR: LDA  1    AR: 1    DR: 266333 ACC: 266333 Z-Flag: 0    
+  DEBUG | TICK: 181   INSTR_COUNT: 40    PC: 40   INSTR: SUB  9    AR: 1    DR: 266333 ACC: 266333 Z-Flag: 0    
+  DEBUG | TICK: 186   INSTR_COUNT: 41    PC: 41   INSTR: STA  1    AR: 9    DR: 33165 ACC: 233168 Z-Flag: 0    
+  DEBUG | TICK: 190   INSTR_COUNT: 42    PC: 42   INSTR: LDA  1    AR: 1    DR: 233168 ACC: 233168 Z-Flag: 0    
+  DEBUG | TICK: 195   INSTR_COUNT: 43    PC: 43   INSTR: OUT       AR: 1    DR: 233168 ACC: 233168 Z-Flag: 0    
+  DEBUG | TICK: 198   INSTR_COUNT: 44    PC: 44   INSTR: HLT       AR: 1    DR: 233168 ACC: 233168 Z-Flag: 0    

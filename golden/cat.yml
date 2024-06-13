@@ -1,0 +1,68 @@
+in_source: |-
+  .code
+  read:
+      IN
+      JZ end            
+      OUT
+      JMP read        
+  end:
+      HLT              
+in_stdin: |-
+  Kirill
+out_code: |-
+  {
+      "data": [],
+      "code": [
+          {
+              "opcode": "IN",
+              "arg": null
+          },
+          {
+              "opcode": "JZ",
+              "arg": 4
+          },
+          {
+              "opcode": "OUT",
+              "arg": null
+          },
+          {
+              "opcode": "JMP",
+              "arg": 0
+          },
+          {
+              "opcode": "HLT",
+              "arg": null
+          }
+      ]
+  }
+out_stdout: |
+  ============================================================
+  Output: Kirill
+out_log: |
+  DEBUG | TICK: 0     INSTR_COUNT: 0     PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 0    Z-Flag: 1    
+  DEBUG | TICK: 3     INSTR_COUNT: 1     PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 75   Z-Flag: 0    
+  DEBUG | TICK: 6     INSTR_COUNT: 2     PC: 2    INSTR: OUT       AR: 0    DR: 0    ACC: 75   Z-Flag: 0    
+  DEBUG | TICK: 9     INSTR_COUNT: 3     PC: 3    INSTR: JMP  0    AR: 0    DR: 0    ACC: 75   Z-Flag: 0    
+  DEBUG | TICK: 12    INSTR_COUNT: 4     PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 75   Z-Flag: 0    
+  DEBUG | TICK: 15    INSTR_COUNT: 5     PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 18    INSTR_COUNT: 6     PC: 2    INSTR: OUT       AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 21    INSTR_COUNT: 7     PC: 3    INSTR: JMP  0    AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 24    INSTR_COUNT: 8     PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 27    INSTR_COUNT: 9     PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 114  Z-Flag: 0    
+  DEBUG | TICK: 30    INSTR_COUNT: 10    PC: 2    INSTR: OUT       AR: 0    DR: 0    ACC: 114  Z-Flag: 0    
+  DEBUG | TICK: 33    INSTR_COUNT: 11    PC: 3    INSTR: JMP  0    AR: 0    DR: 0    ACC: 114  Z-Flag: 0    
+  DEBUG | TICK: 36    INSTR_COUNT: 12    PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 114  Z-Flag: 0    
+  DEBUG | TICK: 39    INSTR_COUNT: 13    PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 42    INSTR_COUNT: 14    PC: 2    INSTR: OUT       AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 45    INSTR_COUNT: 15    PC: 3    INSTR: JMP  0    AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 48    INSTR_COUNT: 16    PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 105  Z-Flag: 0    
+  DEBUG | TICK: 51    INSTR_COUNT: 17    PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 54    INSTR_COUNT: 18    PC: 2    INSTR: OUT       AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 57    INSTR_COUNT: 19    PC: 3    INSTR: JMP  0    AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 60    INSTR_COUNT: 20    PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 63    INSTR_COUNT: 21    PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 66    INSTR_COUNT: 22    PC: 2    INSTR: OUT       AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 69    INSTR_COUNT: 23    PC: 3    INSTR: JMP  0    AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 72    INSTR_COUNT: 24    PC: 0    INSTR: IN        AR: 0    DR: 0    ACC: 108  Z-Flag: 0    
+  DEBUG | TICK: 75    INSTR_COUNT: 25    PC: 1    INSTR: JZ   4    AR: 0    DR: 0    ACC: 0    Z-Flag: 1    
+  DEBUG | TICK: 78    INSTR_COUNT: 26    PC: 4    INSTR: HLT       AR: 0    DR: 0    ACC: 0    Z-Flag: 1    
